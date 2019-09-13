@@ -1,76 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Marvin's Portfolio</title>
+    <title>MyMM Portfolio</title>
     <style>
-    .body{
-        background-image: src;
+body {
+        background-image: linear-gradient(to top, #f57d31, #dfa61f);
         color: rgb(45, 45, 45);
         padding: 10px;
         font-family: arial;
     }
-    nav{
-      background: #9e2b56;  
+
+nav {
+        background: #EEA252;
+        margin: 0 auto;
+        display: flex;
+        padding: 10px;
     }
-    .h1 {
-        color: #55a4b1;
-        font-size: 1.5em;
-        font-weight: bold;
+nav h1 {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        color: #fff;
     }
-    nav ul{
+nav ul {
         border: 1px dotted orange ;
         padding: 5px;
         list-style-image: none;
-        background: #bdecd3;
     }
-    nav li {
-        display: inline-block;
-    }
+ nav li {
+        display: aline-block;
+        padding: 10px 10px;
+}
+main{
+    background: darkorange;
+    color: #fff
+}
+#h1m{
+    text-align: center;
+    color: yellow;
+}
 
-    videos1{
-        background: #fff;
-        margin: 10 10 10 10;
-
-    }
-    .div{
-        background: #9999ff;
-        padding: 5em;
-        
-    }
-    main{
-        background-color: #5c7d84;
-    }
-    #html&csstutos{
-        display: inline-block;
-        background-color: #999900;
-        float:left;
-        width:48%;
-        border: solid #333fff;
-    }
-    h2{
-     text-align: center;
-      color: #005f98;
-    }
-    </Style>
+div li{ display: inline-block;
+        margin:3px;
+        padding: 5px;
+        float: left;
+        border: 2px solid #ffffff;
+       
+}
+p{
+    font-size: 1.1em;
+    border: 1px dotted #fff;
+}
+.row{
+    
+}
+    </style>
 </head>
 <body>
-<div id="all">
-    <nav>
-    <h1>My Portfolio</h1>
-        <ul>
-            <li><a href="https://www.facebook.com/Marvin.Monrroy.Fan.de.Cristo">m.Facebook</a></li>
-            <li><a href="https://www.instagram.com/fan_de_jesucristo_2000/">m.Instagram</a></li>
-        </ul>
-    </nav>>
-    <main>
-    
-        <div id="html&csstutos">
-            <h2>HTML & CSS Tutos</h2>
-           <p class="videos1"><iframe width="560" height="315" src="https://www.youtube.com/embed/XFhYf9GNyY0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>Design web with CSS Grid</p>
-           <p class="videos1"><iframe width="560" height="315" src="https://www.youtube.com/embed/UvdvhMoj_Bo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>Propiedades CSS: Inline block vs Float</p>
-           
-        </div>
-    </main>
-</div>
-</body>
+    <div id="all-contents">
+        <nav>
+            <h1>Marvin's Glorious Website</h1>
+                <ul>
+                    <li><a href="https://www.facebook.com/Marvin.Monrroy.Fan.de.Cristo">mm-Facebook</a></li>
+                    <li><a href="https://www.instagram.com/fan_de_jesucristo_2000/">mm-Instagram</a></li>
+                </ul>
+        </nav>
+        <main>
+            <div class="content">
+                <h1>Portfolio</h1>
+                <ul id="portfolio">
+                </ul>
+            </div>
+            <div class="videos">
+            <h1 id="h1m">HTML & CSS TUTOS</h1>
+                <ul>
+                <div class="row">
+                <li><iframe width="560" height="315" src="https://www.youtube.com/embed/XFhYf9GNyY0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>Building a web CSS Grid</p></li>
+                <li><iframe width="560" height="315" src="https://www.youtube.com/embed/UvdvhMoj_Bo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>Propiedades CSS: Inline block vs Float</p></li>
+               <li><iframe width="560" height="315" src="https://www.youtube.com/embed/073XKB9xv-M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>Website layout with image gallery</p></li>
+                <li><iframe width="560" height="315" src="https://www.youtube.com/embed/yfoY53QXEnI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>CSS Crash Course For Absolute Beginners</p></li>
+                <li><iframe width="560" height="315" src="https://www.youtube.com/embed/1haoknb4m6k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>Advanced CSS Tutorial - Tricky CSS Properties</p></li>
+                <li><iframe width="560" height="315" src="https://www.youtube.com/embed/vs34f9FiHps" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>Even More CSS Secrets</p></li>
+                <li><iframe width="560" height="315" src="https://www.youtube.com/embed/jV8B24rSN5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>CSS Grid Layout Crash Course</p></li>
+                    </div>
+            </ul>
+            </div>
+             </div>
+        </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script>
+    </body>
 </html>
