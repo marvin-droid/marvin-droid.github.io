@@ -34,10 +34,7 @@ nav ul {
 main{
     background: darkorange;
     color: #fff
-}
-#h1m{
-    text-align: center;
-    color: yellow;
+
 }
 
 div li{ display: inline-block;
@@ -54,6 +51,12 @@ p{
 .row{
     
 }
+.projects{
+    display: aline-block;
+}
+.content{
+    text-align:center;
+}
     </style>
 </head>
 <body>
@@ -68,11 +71,16 @@ p{
         <main>
             <div class="content">
                 <h1>Portfolio</h1>
+                <h1> HTML & CSS TUTOS</h1>
+                
+            <div class="projects">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/index.html">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script> 
+            </div>
                 <ul id="portfolio">
                 </ul>
-            </div>
+                </div>
             <div class="videos">
-            <h1 id="h1m">HTML & CSS TUTOS</h1>
                 <ul>
                 <div class="row">
                 <li><iframe width="560" height="315" src="https://www.youtube.com/embed/XFhYf9GNyY0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -94,8 +102,7 @@ p{
             </div>
              </div>
         </main>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script>
 </html>
