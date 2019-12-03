@@ -6,15 +6,15 @@ var level01 = function (window) {
     var createjs = window.createjs;
 
     window.opspark.runLevelInGame = function(game) {
-        // some useful constants 
+        // some useful constants
         var groundY = game.groundY;
-        
-        
+
+
         // this data will allow us to define all of the
         // behavior of our game
         var levelData = {
             name: "Robot Romp",
-            number: 1, 
+            number: 1,
             speed: -3,
             gameItems: [
                 {type: 'sawblade',x:400,y:groundY},
@@ -24,28 +24,28 @@ var level01 = function (window) {
                 {type: 'punta',x:1250,y:groundY}
                 ]
         };
-        
-        
+
+
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(false);
+        game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
-        
+
         function createSawBlade(x,y) {
     // your code goes here
         var hitZoneSize = 25;
         var damageFromObstacle = 10;
         var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
-        
+
        myObstacle.x = x;
        myObstacle.y = y;
-        
+
         game.addGameItem(myObstacle);
-    
+
         var obstacleImage = draw.bitmap('img/sawblade.png');
         myObstacle.addChild(obstacleImage);
-        
+
         obstacleImage.x = -25;
         obstacleImage.y = -25;
 }
@@ -53,24 +53,24 @@ function createPunta(x,y) {
     //  var hitZoneSize = 25;
         var damageFromObstacle = 10;
         var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
-        
+
        myObstacle.x = x;
        myObstacle.y = y; var hitZoneSize = 25;
        var damageFromObstacle = 10;
        var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
-        
+
        myObstacle.x = x;
        myObstacle.y = y;
-       
+
        game.addGameItem(myObstacle);
-    
+
         var obstacleImage = draw.bitmap('img/punta.png');
         myObstacle.addChild(obstacleImage);
-        
+
         obstacleImage.x = -25;
         obstacleImage.y = -25;
-       
-       
+
+
 }
 
 
@@ -98,7 +98,7 @@ for(var i= 0; i < levelData.gameItems.length; i++){
 //
 //enemy.velocityX = -1;
 //
-//if(enemy.x < -100){ 
+//if(enemy.x < -100){
 //    enemy.x = canvasWidth;
 //    }
 //    enemy.onPlayerCollision = function(){
@@ -112,6 +112,7 @@ for(var i= 0; i < levelData.gameItems.length; i++){
 //
 //enemy(1000, groundY -50);
 
+////////////////////////////////////////////////////////////
 function createEnemy(x, y) {
     // all code from 11 and 12
     function enemy(x, y){
@@ -120,7 +121,7 @@ function createEnemy(x, y) {
     redSquare.x = -50;
     redSquare.y = -180;
     enemy.addChild(redSquare);
-    
+
    redSquare.scaleX = 0.6;
    redSquare.scaleY = 0.6;
 
@@ -132,25 +133,59 @@ game.addGameItem(enemy);
 
 
 enemy.velocityX = -1;
-    
+
     enemy.onPlayerCollision = function(){
     console.log('The enemy has hit Halle');
-    game.changeIntegrity(-5)
+    game.changeIntegrity(-15)
     };
     enemy.onProjectileCollision = function (){
         enemy.fadeOut();
         createEnemy(2300, groundY -50);
+        createEnemy(canvasWidth, groundY -50);
     }
  };
 enemy(1200, groundY -50);
 
 }
 createEnemy();
+///////////////////////////////////////////////////////
+
+function createPoint(x, y) {
+    // all code from 11 and 12
+    function point(x, y){
+    var point = game.createGameItem('point',25);
+    var redSquare = draw.bitmap('img/lifeItem.png');
+    redSquare.x = -25;
+    redSquare.y = -25;
+    point.addChild(redSquare);
+
+   redSquare.scaleX = 0.2;
+   redSquare.scaleY = 0.2;
+
+point.x = x;
+point.y = y;
+
+game.addGameItem(point);
 
 
 
+point.velocityX = -1;
 
-//////////////////////////////////////
+    point.onPlayerCollision = function(){
+    console.log('The lifeItem has touched Halle');
+    game.changeIntegrity(+25);
+    point.fadeOut();
+    createPoint(2300, groundY -50);
+    };
+}
+point(1000, groundY -50);
+
+}
+createPoint();
+
+
+
+////////////////////////////////////////////////////
     }
 };
 
