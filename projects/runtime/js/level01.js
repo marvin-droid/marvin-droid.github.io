@@ -28,7 +28,7 @@ var level01 = function (window) {
 
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(true);
+        game.setDebugMode(false);
 
         // BEGIN EDITING YOUR CODE HERE
 
@@ -136,15 +136,17 @@ enemy.velocityX = -1;
 
     enemy.onPlayerCollision = function(){
     console.log('The enemy has hit Halle');
-    game.changeIntegrity(-15)
+    game.changeIntegrity(-100);
+    enemy.fadeOut();
+    createEnemy(2500, groundY -50);
     };
     enemy.onProjectileCollision = function (){
         enemy.fadeOut();
-        createEnemy(2300, groundY -50);
-        createEnemy(canvasWidth, groundY -50);
+        createEnemy(2500, groundY -50);
+        // createEnemy(canvasWidth, groundY -50);
     }
  };
-enemy(1200, groundY -50);
+enemy(1400, groundY -50);
 
 }
 createEnemy();
@@ -175,8 +177,13 @@ point.velocityX = -1;
     console.log('The lifeItem has touched Halle');
     game.changeIntegrity(+25);
     point.fadeOut();
-    createPoint(2300, groundY -50);
+    createPoint(2200, groundY -50);
     };
+       point.onProjectileCollision = function (){
+        point.fadeOut();
+        createPoint(2200, groundY -50);
+        // createEnemy(canvasWidth, groundY -50);
+    }
 }
 point(1000, groundY -50);
 
