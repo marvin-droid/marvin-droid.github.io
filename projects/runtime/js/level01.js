@@ -1,14 +1,14 @@
 var level01 = function (window) {
 
     window.opspark = window.opspark || {};
-
     var draw = window.opspark.draw;
     var createjs = window.createjs;
 
     window.opspark.runLevelInGame = function(game) {
+
+
         // some useful constants
         var groundY = game.groundY;
-        var canvasWidth = app.canvas.width;
 
         // this data will allow us to define all of the
         // behavior of our game
@@ -20,8 +20,8 @@ var level01 = function (window) {
                 {type: 'sawblade',x:400,y:groundY},
                 {type: 'sawblade',x:600,y:groundY},
                 {type: 'sawblade ',x:900,y:groundY -100},
-                {type: 'punta',x:canvasWidth,y:groundY},
-                {type: 'punta',x:canvasWidth +160,y:groundY}
+                {type: 'punta',x:1100,y:groundY},
+                {type: 'punta',x:1260,y:groundY}
                 ]
         };
 
@@ -51,12 +51,6 @@ function createSawBlade(x,y) {
 }
 
 function createPunta(x,y) {
-    //  var hitZoneSize = 25;
-        var damageFromObstacle = 10;
-        var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
-
-       myObstacle.x = x;
-       myObstacle.y = y;
 
        var hitZoneSize = 25;
        var damageFromObstacle = 10;
@@ -66,17 +60,13 @@ function createPunta(x,y) {
        myObstacle.y = y;
 
        game.addGameItem(myObstacle);
-        enemy.velocityX = -1;
 
         var obstacleImage = draw.bitmap('img/punta.png');
         myObstacle.addChild(obstacleImage);
 
         obstacleImage.x = -25;
         obstacleImage.y = -25;
-
-
 }
-
 
 for(var i= 0; i < levelData.gameItems.length; i++){
     var gameItem = levelData.gameItems[i];
@@ -85,10 +75,6 @@ for(var i= 0; i < levelData.gameItems.length; i++){
     }else{
         createSawBlade(gameItem.x,gameItem.y);
     }
-}
-
-if(myObstacle.x < 0){
-    myObstacle.x = canvasWidth;
 }
 
 
@@ -115,11 +101,11 @@ function createEnemy(x, y) {
     console.log('The enemy has hit Halle');
     game.changeIntegrity(-100);
     enemy.fadeOut();
-    createEnemy(canvasWidth, groundY -50);
-    };
-        enemy.onProjectileCollision = function (){
-        enemy.fadeOut();
-        createEnemy(canvasWidth, groundY -50);
+    createEnemy(2500, groundY -50);};
+
+    enemy.onProjectileCollision = function (){
+    enemy.fadeOut();
+    createEnemy(2500, groundY -50);
 
     }
  };
@@ -144,7 +130,7 @@ function createPoint(x, y) {
     point.y = y;
 
     game.addGameItem(point);
-    point.velocityX = -1;
+    point.velocityX = -1.1;
 
     point.onPlayerCollision = function(){
     console.log('The lifeItem has touched Halle');
