@@ -22,10 +22,10 @@ var level01 = function (window) {
                 {type: 'sawblade',x:600,y:groundY},
                 {type: 'sawblade ',x:850,y:groundY -100},
                 {type: 'sawblade',x:1000,y:groundY -100},
-                {type: 'sawblade',x:1300,y:groundY},
-                {type: 'sawblade',x:1420,y:groundY},
-                {type: 'punta',x:1100,y:groundY},
-                {type: 'punta',x:1260,y:groundY}
+                {type: 'sawblade',x:1500,y:groundY},
+                {type: 'sawblade',x:1720,y:groundY},
+                {type: 'punta',x:1200,y:groundY},
+                {type: 'punta',x:1360,y:groundY}
                 ]
         };
 
@@ -89,6 +89,7 @@ for(var i= 0; i < levelData.gameItems.length; i++){
     }
 }
 
+
 ////////////////////////////////////////////////////////////
 function createEnemy(x, y) {
     // all code from 11 and 12
@@ -112,15 +113,26 @@ function createEnemy(x, y) {
     console.log('The enemy has hit Halle');
     game.changeIntegrity(-100);
     enemy.fadeOut();
-    createEnemy(2500, groundY -50);};
+    createEnemy(2400, groundY -50);};
 
     enemy.onProjectileCollision = function (){
     enemy.fadeOut();
-    createEnemy(2500, groundY -50);
+    createEnemy(2400, groundY -50);
+    
+    
+    for(var i= 0; i < levelData.gameItems.length; i++){
+    var gameItem = levelData.gameItems[i];
+    if(gameItem.type === "punta"){
+        createPunta(gameItem.x, gameItem.y);
+    }
+    if(gameItem.type === "sawblade"){
+        createSawBlade(gameItem.x,gameItem.y);
+    }
+}
 
     }
  };
-enemy(1400, groundY -50);
+enemy(2400, groundY -50);
 }
 createEnemy();
 ////////////////////////////////////////////////////////////
