@@ -1,5 +1,6 @@
 var level01 = function (window) {
-
+       
+            
     window.opspark = window.opspark || {};
     var draw = window.opspark.draw;
     var createjs = window.createjs;
@@ -19,7 +20,10 @@ var level01 = function (window) {
             gameItems: [
                 {type: 'sawblade',x:400,y:groundY},
                 {type: 'sawblade',x:600,y:groundY},
-                {type: 'sawblade ',x:900,y:groundY -100},
+                {type: 'sawblade ',x:850,y:groundY -100},
+                {type: 'sawblade',x:1000,y:groundY -100},
+                {type: 'sawblade',x:1300,y:groundY},
+                {type: 'sawblade',x:1420,y:groundY},
                 {type: 'punta',x:1100,y:groundY},
                 {type: 'punta',x:1260,y:groundY}
                 ]
@@ -68,15 +72,22 @@ function createPunta(x,y) {
         obstacleImage.y = -25;
 }
 
+// for(var i= 0; i < levelData.gameItems.length; i++){
+//     var gameItem = levelData.gameItems[i];
+//     if(gameItem.type === 'punta'){
+//         createPunta(gameItem.x, gameItem.y);
+//     }else{createSawBlade(gameItem.x,gameItem.y);
+//     }
+// }
 for(var i= 0; i < levelData.gameItems.length; i++){
     var gameItem = levelData.gameItems[i];
-    if(gameItem.type === 'punta'){
+    if(gameItem.type === "punta"){
         createPunta(gameItem.x, gameItem.y);
-    }else{
+    }
+    if(gameItem.type === "sawblade"){
         createSawBlade(gameItem.x,gameItem.y);
     }
 }
-
 
 ////////////////////////////////////////////////////////////
 function createEnemy(x, y) {
