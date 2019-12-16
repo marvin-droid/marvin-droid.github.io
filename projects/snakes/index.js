@@ -20,7 +20,7 @@ var updateInterval;
 // Constant Variables
 var ROWS = 25;
 var COLUMNS = 25;
-var SQUARE_SIZE = 25;
+var SQUARE_SIZE = 20;
 var KEY = {
   LEFT: 37,
   UP: 38,
@@ -51,7 +51,7 @@ function init() {
   score = 0;
   
   // start update interval
-  updateInterval = setInterval(update, 100);
+  updateInterval = setInterval(update, 150);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +75,7 @@ function update() {
   
 }
 
+
 function moveSnake() {
   /* 
   TODO 10: Move each part of the snake's body such that it's body follows the head.
@@ -85,25 +86,23 @@ function moveSnake() {
   column/row properties. 
   
   */
-  for ( var i = 1; i < snake.body.length; i++ ) {
-    var snakeSquare = snake.body.length[i];
+
+  for ( var i = snake.body.length -1; i >= 1; i-- ) {
+    var snakeSquare = snake.body[i];
+    var nextSnakeSquare = snake.body[i - 1];
     
-    var nextSnakeSquare = snake.body.length[i];
-    var nextRow = snake.body.length[i];
-    var nextColumn = snake.body.length[i];
+    var nextRow = nextSnakeSquare.row;
+    var nextColumn = nextSnakeSquare.column;
+    
+    var nextDirection = nextSnakeSquare.direction;
+    snakeSquare.direction = nextDirection;
     
     repositionSquare(snakeSquare, nextRow, nextColumn);
-    
-    var nextDirection = KEY;
-    snakeSquare.direction = nextDirection;
-}
-
-  
-
+   }
   
   /* 
   TODO 5: determine the next row and column for the snake's head
-  
+ 
   HINT: The snake's head will need to move forward 1 square based on the value
   of snake.head.direction which may be one of "left", "right", "up", or "down"
   */
@@ -112,16 +111,21 @@ function moveSnake() {
   var nextColumn = snake.head.column;
     
 // determine how to change the value of nextRow and nextColumn based on snake.head.direction
-    
+
+    if (snake.head.direction === "left") {
+        nextColumn--;
+    }else if (snake.head.direction === "right") {
+        nextColumn++;
+    }else if (snake.head.direction === "up") {
+        nextRow--;
+    }else if (snake.head.direction === "down") {
+        nextRow++;
+    }
+
+  // after the body has moved to follow the head, reposition the head
+  // according to the current direction it is facing.
 repositionSquare(snake.head, nextRow, nextColumn);
-
-    snake.head.row;          // the current row of snake.head
-    snake.head.column;       // the current column of snake.head
-    snake.head.direction;    // the direction that the head should move towards
-
-  
 }
-
 function hasCollidedWithApple() {
   /* 
   TODO 8: Should return true if the snake's head has collided with the apple, 
@@ -129,12 +133,7 @@ function hasCollidedWithApple() {
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-    apple.row;           // the current row of the apple
-    apple.column;        // the current column of the apple
-    snake.head.row;      // the current row of snake.head
-    snake.head.column;   // the current column of snake.head 
-      
-  return false;
+return snake.head.row === apple.row && snake.head.column === apple.column;
 }
 
 function handleAppleCollision() {
@@ -176,13 +175,11 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-    snake.body.row;           
-    snake.body.column;        
-    snake.head.row;      
-    snake.head.column;   
-  
-  
-  return false;
+  for (var i = 1; i < snake.body.length; i++){
+    if(snake.head.row === snake.body[i].row && snake.head.column === snake.body[i].column){
+    return true;
+  }
+ }
 }
 
 function hasHitWall() {
@@ -192,13 +189,9 @@ function hasHitWall() {
   
   HINT: What will the row and column of the snake's head be if this were the case?
   */
-  
-    ROWS;                // the total number of ROWS in the board
-    COLUMNS;             // the total number of COLUMNS in the board
-    snake.head.row;      // the current row of snake.head
-    snake.head.column;   // the current column of snake.head 
 
-  return false;
+  return snake.head.row > ROWS || snake.head.row < 0 || snake.head.column > COLUMNS || snake.head.column < 0;
+  
 }
 
 function endGame() {
@@ -211,7 +204,7 @@ function endGame() {
   calculateAndDisplayHighScore();
   
   // restart the game after 500 ms
-  setTimeout(function() { init(); }, 500);
+  setTimeout(function() { init(); }, 200);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

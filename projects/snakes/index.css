@@ -1,12 +1,12 @@
 body, #board {
-  background-color: black;
+  background-color: gray;
   
 }
 
 #board {
-  width: 440px;
-  height: 440px;
-  border: 1px solid white;
+  width: 525px;
+  height: 525px;
+  border: 10px solid white;
 }
 
 #timer, #score, #highScore {
@@ -14,7 +14,6 @@ body, #board {
 }
 
 .snake, .apple {
-  display: block;
   width: 20px;
   height: 20px;
   position: absolute;
@@ -22,8 +21,9 @@ body, #board {
 }
 
 .snake {
+  border-radius:40%;
   background-color: green;
-  z-index: 2;
+  z-index: 3;
 }
 
 #snake-head {
@@ -31,6 +31,8 @@ body, #board {
 }
 
 .apple {
+    border-radius: 36% 36% 41% 41% / 42% 42% 75% 75%;  
+    margin: 81px 0px 0px 10px;
   background-color: red;
-  z-index: 1;
+  z-index: 3;
 }
